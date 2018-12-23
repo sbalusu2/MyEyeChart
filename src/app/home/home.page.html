@@ -1,12 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      MyEyeChart
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+	<ion-card>
+      <ion-card-header>
+       		<ion-card-title>Sai Balusu</ion-card-title>
+      </ion-card-header>
+      <ion-list>
+        <ion-card-content>
+          Email: exampleEmail@gmail.com
+        </ion-card-content>
+        <ion-card-content>
+          Phone Number: (123-456-7890)
+        </ion-card-content>
+        <ion-card-content>
+          Date of Birth: 01/01/1900
+        </ion-card-content>
+       </ion-list>
+  </ion-card>
+
+
+  <ion-button [routerLink]="['/orders']"  shape="round" color="primary" fill="outline">My Orders</ion-button>
+  <ion-button [routerLink]="['/appointments']" shape="round" color="primary" fill="outline">My Appointments</ion-button>
+  <ion-button [routerLink]="['/prescriptions']"  shape="round" color="primary" fill="outline">My Prescriptions</ion-button>
+
 </ion-content>
