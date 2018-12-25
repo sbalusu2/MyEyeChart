@@ -58,6 +58,16 @@ locations: Location[];
   		})
   	}
 
+  	getFilteredLocations(searchText: string): Observable<Location[]>{
+  		return Observable.create(observable => {
+  			this.getLocations().subscribe(allLocations => {
+  				let filteredLocations = allLocations.filter(l => l.name.toLowerCase().indexOf(searchText) > -1);
+  				observable.next(filteredLocations);
+  				observable.complete();
+  		})
+  		})
+  	}
+
 
   	getRandomLocation() :Observable<Location> {
   		return Observable.create(observable => {

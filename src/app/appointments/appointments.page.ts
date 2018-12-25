@@ -34,7 +34,11 @@ export class AppointmentsPage implements OnInit {
 
 
   getItems(event){
-    console.log(event.target.value);
+    this.locationService.getFilteredLocations(event.target.value).subscribe(filteredLocations => {
+      console.log(filteredLocations);
+      this.locations = filteredLocations;
+    });
+    
   }
 
   onSelect(location: Location): void {
