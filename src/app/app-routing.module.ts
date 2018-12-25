@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'appointments', loadChildren: './appointments/appointments.module#AppointmentsPageModule' },
   { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
   { path: 'prescriptions', loadChildren: './prescriptions/prescriptions.module#PrescriptionsPageModule' },
+  { path: 'locations/:id', loadChildren: './location-detail/location-detail.module#LocationDetailPageModule' },
 ];
 
 @NgModule({

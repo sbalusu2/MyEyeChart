@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+    	<ion-back-button></ion-back-button>
+  	</ion-buttons>
+    <ion-title>Location Title</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+	<h1>HI</h1>
+  	<div *ngIf="location">
+		  <h2>{{location.name | uppercase}} Details</h2>
+		  <div><span>id: </span>{{location.id}}</div>
+		  <div>
+		    <label>name:
+		      <input [(ngModel)]="location.name" placeholder="name">
+		    </label>
+		  </div>
+	</div>
+</ion-content>

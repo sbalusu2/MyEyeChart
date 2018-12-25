@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Location } from '../location';
+import { LOCATIONS } from '../list-locations';
+import { LocationServiceService } from '../location-service.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-appointments',
@@ -7,11 +13,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsPage implements OnInit {
 
-  constructor() { }
+  pie: Location;
+  location: Location;
+  locations: Location[];
+  queryText: string; 
+  
+  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService) { 
 
-  ngOnInit() {
+    locationService.getRandomLocation().subscribe(result => {
+    this.pie = result;
+    });
   }
 
-  hero = "winston"
+  ngOnInit(){
+    console.log('ionViewDidLoad ListLocationPage');
+    this.locationService.getLocations().subscribe(results => {
+    this.locations = results;
+    });
+  }
+
+
+  getItems(event){
+    console.log(event.target.value);
+  }
+
+  onSelect(location: Location): void {
+  }
+
+  locationSelected(location: Location){
+    console.log('location', location);
+    console.log(location.id)    
+  }
+
 
 }

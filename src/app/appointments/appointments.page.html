@@ -8,12 +8,62 @@
 </ion-header>
 
 <ion-content padding>
-	<h1>Hi there, this is the Appointments Page!</h1>
-	<ion-searchbar animated = "true"  show-cancel-button debounce="500">
+	<h1>Hi there, this is the Appointments Page! {{pie.name}}</h1>
+	<ion-searchbar animated = "true"  show-cancel-button debounce="500"
+                 (ionInput) = "getItems($event)"
+                 [(ngModel)] = "queryText">
 	</ion-searchbar>
-	<ion-list>
-		<ion-item>{{hero}}</ion-item>
-	</ion-list>	
+
+  <ion-list>
+    <ion-item *ngFor="let location of locations" (click)="locationSelected(location)">
+<!--     <a [routerLink]="['/location-detail', location.id]"></a> -->    
+      <a [routerLink]="['/locations', location.id]" routerLinkActive="active" style="text-decoration: none;"> {{ location.name }}</a>
+      
+
+       
+    </ion-item> 
+  </ion-list>
+
+<!--   <div *ngIf="location">
+    <h2>{{location.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{location.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="location.name" placeholder="name"/>
+      </label>
+    </div>
+</div> -->
+
+<!--   <ul>
+    <li *ngFor="let location of locations" (click)="locationSelected(location)">
+      <a [routerLink]="['/location-detail', location.id]">
+        {{location.id}}{{ location.name }}
+      </a>
+    </li>
+  </ul> -->
+
+
+
+
+<!--  	<ion-list>
+	    <ion-item *ngFor="let location of locations"
+	       [class.selected] = "location === selectedLocation"
+	       (click) = "onSelect(location)"
+         [href]="'/location-detail'">
+	       {{location.name}}
+	    </ion-item>
+  	</ion-list> -->
+
+
+<!-- <div *ngIf="selectedLocation">
+  <h2>{{selectedLocation.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedLocation.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedLocation.name" placeholder="name">
+    </label>
+  </div>
+</div>   -->
 </ion-content>
 
 <!-- <ion-searchbar [(ngModel)]="searchInput"
