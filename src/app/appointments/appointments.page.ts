@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Location } from '../location';
-import { LOCATIONS } from '../list-locations';
 import { LocationServiceService } from '../location-service.service';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -17,12 +18,17 @@ export class AppointmentsPage implements OnInit {
   location: Location;
   locations: Location[];
   queryText: string; 
-  
-  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService) { 
+  items: Observable<any>;
+  tester: Observable<any>;
+  testingString: string;
+
+  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService, private db: AngularFireDatabase
+) { 
 
     locationService.getRandomLocation().subscribe(result => {
     this.pie = result;
     });
+ 
   }
 
   ngOnInit(){
@@ -30,8 +36,20 @@ export class AppointmentsPage implements OnInit {
     this.locationService.getLocations().subscribe(results => {
     this.locations = results;
     });
-  }
 
+    this.tester = this.db.object('locations/1').valueChanges();
+    console.log("HIASHIAHS"  + this.tester);
+    this.tester.subscribe(testerObj => {
+      console.log("SJDJSDAJ: "  + testerObj.name);
+    })
+    this.items = this.db.object('locations').valueChanges();
+    this.items.subscribe(dbResults => {
+    for (let index of dbResults){
+        console.log("dbResults: " + index.name);
+        console.log("type of dbResults: " + typeof index.name);
+          }
+        })
+  }
 
   getItems(event){
     this.locationService.getFilteredLocations(event.target.value).subscribe(filteredLocations => {
@@ -48,6 +66,5 @@ export class AppointmentsPage implements OnInit {
     console.log('location', location);
     console.log(location.id)    
   }
-
 
 }

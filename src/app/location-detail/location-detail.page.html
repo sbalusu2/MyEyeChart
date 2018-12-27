@@ -3,13 +3,20 @@
   	<ion-buttons slot="start">
     	<ion-back-button></ion-back-button>
   	</ion-buttons>
-    <ion-title>Location Title</ion-title>
+    <ion-title>Schedule an Appointment at the {{location.name}} Office</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
 	<h1>HI</h1>
+	<h2>{{location.name}}</h2>
+	<h4>State</h4>
+	<p>First line of address
+	<br>
+	Second line of address
+	<br>
+	Phone Number</p>
   	<div *ngIf="location">
 		  <h2>{{location.name | uppercase}} Details</h2>
 		  <div><span>id: </span>{{location.id}}</div>

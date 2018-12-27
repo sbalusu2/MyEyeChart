@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Location } from './location';
+import { AngularFireDatabase } from '@angular/fire/database';
 import {Observable} from 'rxjs/Rx';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,39 +12,28 @@ export class LocationServiceService {
 
 
 locations: Location[];
+items: Observable<any>;
 
-  constructor() { 
+  constructor(private db: AngularFireDatabase) { 
   	this.locations = [
-	  { id: 0, name: 'Boca Raton' },
-	  { id: 1, name: 'Coral Springs' },
-	  { id: 2, name: 'Cutler Bay' },
-	  { id: 3, name: 'Florida City' },
-	  { id: 4, name: 'Fort Lauderdale' },
-	  { id: 5, name: 'Gainesville' },
-	  { id: 6, name: 'Hialeah' },
-	  { id: 7, name: 'Hollywood East' },
-	  { id: 8, name: 'Hollywood West' },
-	  { id: 9, name: 'Jacksonville' },
-	  { id: 10, name: 'Jupiter' },
-	  { id: 11, name: 'Kendall' },
-	  { id: 12, name: 'Lauderhill' },
-	  { id: 13, name: 'Little Havana' },
-	  { id: 14, name: 'Miami Lakes' },
-	  { id: 15, name: 'North Miami Beach' },
-	  { id: 16, name: 'Okeechobee' },
-	  { id: 17, name: 'Orange Park' },
-	  { id: 18, name: 'Orlando' },
-	  { id: 19, name: 'Palm Beach Gardens' },
-	  { id: 20, name: 'Palm Springs' },
-	  { id: 21, name: 'Pembroke Pines' },
-	  { id: 22, name: 'Pensacola' },
-	  { id: 23, name: 'River City Marketplace' },
-	  { id: 24, name: 'Stuart' },
-	  { id: 25, name: 'Tallahassee' },
-	  { id: 26, name: 'West Palm Beach' },
-	  { id: 27, name: 'Westchester'}
+	  { id: 0, name: 'Mobile', state: 'Alabama', streetAddress: '3653 Airport Blvd, Suite C', stateAddress: 'Mobile, AL 36608', phone: '(251)207-3505'},
+	  { id: 1, name: 'Anchorage', state: 'Alaska', streetAddress: '8300 Homer Dr', stateAddress: 'Anchorage, AK 99518', phone: '(907)885-3232'},
+	  { id: 2, name: 'Little Rock', state: 'Arkansas', streetAddress: '112 S University Ave', stateAddress: 'Little Rock, AR 72205', phone: '(501)481-1333'},
+
+	  { id: 1, name: 'Anchorage', state: 'Alaska', streetAddress: '8300 Homer Dr', stateAddress: 'Anchorage, AK 99518', phone: '(907)885-3232'}  
+	
   	];
   }
+
+
+          getValueFromObservable(){
+        this.items = this.db.object('locations').valueChanges();
+        console.log("trying something here: " + this.items.take(1).toPromise());
+        return this.items
+           .take(1)
+           .toPromise()   
+    }
+
 
   	getLocations() :Observable<Location[]> {
   		return Observable.create(observable => {
@@ -61,7 +52,7 @@ locations: Location[];
   	getFilteredLocations(searchText: string): Observable<Location[]>{
   		return Observable.create(observable => {
   			this.getLocations().subscribe(allLocations => {
-  				let filteredLocations = allLocations.filter(l => l.name.toLowerCase().indexOf(searchText) > -1);
+  				let filteredLocations = allLocations.filter(l => l.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
   				observable.next(filteredLocations);
   				observable.complete();
   		})

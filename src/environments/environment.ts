@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyBCpcCNRtp8X6eyq2w1TLgzw4u5uYAcdbE',
+    authDomain: 'myeyechart.firebaseapp.com',
+    databaseURL: 'https://myeyechart.firebaseio.com',
+    projectId: 'myeyechart',
+    storageBucket: 'myeyechart.appspot.com',
+    messagingSenderId: '446371709729'
+  }
 };
 
 /*
