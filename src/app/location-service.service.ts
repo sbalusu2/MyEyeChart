@@ -49,11 +49,25 @@ items: Observable<any>;
   		})
   	}
 
+  getFilteredLocationsFB(searchText: string): Observable<any>{
+      this.items = this.db.object('locations').valueChanges();
+      return Observable.create(observable => {
+        this.items.subscribe(allLocations => {
+          console.log("allLocations: " + allLocations);
+          let filteredLocations = allLocations.filter(l => l.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
+          observable.next(filteredLocations);
+          console.log("Location Service 2 : " + filteredLocations);
+          console.log(JSON.stringify(filteredLocations));
+          observable.complete();
+      })
+      })
+    }
   	getFilteredLocations(searchText: string): Observable<Location[]>{
   		return Observable.create(observable => {
   			this.getLocations().subscribe(allLocations => {
   				let filteredLocations = allLocations.filter(l => l.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
   				observable.next(filteredLocations);
+          console.log(typeof filteredLocations);
   				observable.complete();
   		})
   		})

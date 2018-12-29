@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
+import { AuthService } from './auth.service';
 
 
 
@@ -22,6 +24,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFireDatabaseModule, AngularFireAuthModule],
   providers: [
     StatusBar,
+    AuthService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

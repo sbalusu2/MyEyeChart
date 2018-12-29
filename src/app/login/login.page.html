@@ -1,0 +1,22 @@
+<ion-content padding>
+	<div class = "center">
+		<form name = "userform" method = "post" #formCtrl = "ngForm">
+		<img src="../assets/img/myeyelab.jpg">
+		<div>
+			<label>Email Address</label>
+			<input type="email" [(ngModel)]="user.email" name="email" placeholder="username or email" required>
+		</div>
+		<div>
+			<label>Password</label>
+			<input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
+		</div>
+			<ion-button (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">SIGN IN</ion-button>
+			<ion-button [routerLink]="['/register']">Register</ion-button>
+			<ion-button (click)="signInWithGoogle()">Login with Google</ion-button>
+		</form>
+	</div>
+</ion-content>
+
+
+
+        

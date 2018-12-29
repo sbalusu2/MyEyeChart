@@ -52,12 +52,28 @@ export class AppointmentsPage implements OnInit {
   }
 
   getItems(event){
-    this.locationService.getFilteredLocations(event.target.value).subscribe(filteredLocations => {
+    this.locationService.getFilteredLocationsFB(event.target.value).subscribe(filteredLocations => {
+      console.log("this is what is in filteredLocations: " + filteredLocations);
+      console.log(typeof filteredLocations);
       console.log(filteredLocations);
-      this.locations = filteredLocations;
+      console.log(JSON.stringify(filteredLocations));
+      console.log(filteredLocations[0].id);
+      this.items = filteredLocations;
+      console.log(this.items);
     });
     
+
   }
+
+   getItemsB(event){
+    this.locationService.getFilteredLocations(event.target.value).subscribe(filteredLocations => {
+      console.log(filteredLocations);
+      console.log(this.locations);
+      this.locations = filteredLocations;
+      console.log(this.locations);
+    });
+
+}
 
   onSelect(location: Location): void {
   }

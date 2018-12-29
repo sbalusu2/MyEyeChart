@@ -2,10 +2,15 @@
   <ion-toolbar>
     <ion-buttons slot ="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    </ion-buttons>  
     <ion-title>
       MyEyeChart
     </ion-title>
+    <ion-buttons slot = "end">
+      <ion-button (click)="authService.logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>     
   </ion-toolbar>
 </ion-header>
 
@@ -26,8 +31,6 @@
         </ion-card-content>
        </ion-list>
   </ion-card>
-
-
   <ion-button [routerLink]="['/orders']"  shape="round" color="primary" fill="outline">My Orders</ion-button>
   <ion-button [routerLink]="['/appointments']" shape="round" color="primary" fill="outline">My Appointments</ion-button>
   <ion-button [routerLink]="['/prescriptions']"  shape="round" color="primary" fill="outline">My Prescriptions</ion-button>

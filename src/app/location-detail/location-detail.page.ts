@@ -14,26 +14,34 @@ import { Observable } from 'rxjs';
 })
 export class LocationDetailPage implements OnInit {
 
- @Input() location: Location;
+ items: Observable<any>;
+ name:string;
+ state:string;
+ stateAddress:string;
+ streetAddress:string;
+ phone:string;
 
-items: Observable<any>;
 
   constructor(private route: ActivatedRoute, private locationService: LocationServiceService, private db: AngularFireDatabase) { }
 
   ngOnInit(){
-  	this.getLocation();
-  }
-
-  getLocation(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log("ID IS  " + id);
+    console.log("YO ID IS: " + id);
     this.items = this.db.object('locations/' + id).valueChanges();
     console.log("OIRTPOEIRTPOIER"  + this.items);
+    console.log("Length "+ Object.keys(this.items).length); 
     this.items.subscribe(testerObj => {
-      console.log("JLKASJDLKAJSDL: "  + testerObj.name);
+      this.name = testerObj.name;
+      this.state = testerObj.state;
+      this.stateAddress = testerObj.stateAddress;
+      this.streetAddress = testerObj.streetAddress;
+      this.streetAddress = testerObj.streetAddress;
+      this.phone = testerObj.phone;
+      console.log("lolololololo: "  + testerObj.name);
+      console.log("lolololololo: "  + testerObj.state);
     
     })
-    this.locationService.getSpecificLocation(id).subscribe(location => this.location = location);
   }
+
 }
 

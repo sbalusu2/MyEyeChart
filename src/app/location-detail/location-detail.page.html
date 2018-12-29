@@ -3,27 +3,109 @@
   	<ion-buttons slot="start">
     	<ion-back-button></ion-back-button>
   	</ion-buttons>
-    <ion-title>Schedule an Appointment at the {{location.name}} Office</ion-title>
+    <ion-title>Information about our {{name}} Office</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-	<h1>HI</h1>
-	<h2>{{location.name}}</h2>
-	<h4>State</h4>
-	<p>First line of address
-	<br>
-	Second line of address
-	<br>
-	Phone Number</p>
-  	<div *ngIf="location">
-		  <h2>{{location.name | uppercase}} Details</h2>
-		  <div><span>id: </span>{{location.id}}</div>
-		  <div>
-		    <label>name:
-		      <input [(ngModel)]="location.name" placeholder="name">
-		    </label>
-		  </div>
+	<h1>HI {{items.name | async | json }}</h1>
+	<h1>The Best Optical Store in {{name}}</h1>
+	<p>My Eyelab in {{name}} is conveniently located at {{streetAddress}}. With more than 2,000 frames to choose from, we know you’ll find something you love to suit your taste and lifestyle. You can schedule an eye exam with us or visit our store now.</p>
+	<div class="store-block">
+	<p class="title"> Hialeah</p>
+	<div class="add-block">1305 W 49th St <br>Hialeah, FL 33012</div>
+	<h4>Phone</h4>
+	<p>(786) 520-2933</p>
+	<h4>Store Hours</h4>
+	<p>Mon - Sat 9:00 am - 7:00 pm<br>Sun 12:00 pm - 5:00 pm</p>
+	<a href="https://www.myeyelab.com/book-eye-exam/?id=41" class="button bttn cl-btn">schedule an appointment</a>
+	</div>	
+
+
+	<div>
+		<h1>Address of Office: </h1>
+		<p><strong>{{name}}</strong><br>
+		{{state}}</p>
+
+		<p class = "title">{{name}}</p>
+		<p>{{state}}</p>
+		<p>{{stateAddress}}</p>
+		<p>{{streetAddress}}</p>
+		<h1 class = "office">{{name}}</h1>
+		<h3>{{state}}</h3>
+		<p>{{stateAddress}}
+		<br>
+		{{streetAddress}}
+		<br><a href="">{{phone}}</a></p>
+	</div>
+
+	<div>
+		<h3>Free Eye Exam Available!</h3>
+		<p>Utilizing the latest technologies, an experienced independent doctor of optometry will perform a comprehensive eye exam. During the exam, the eye doctor will determine your new prescription and also perform the following tests:</p>
+		<ul>
+			<li>Autorefraction</li>
+			<li>Refractive analysis</li>
+			<li>Visual acuity</li>
+			<li>Tonometry</li>
+			<li>Autokeratometry</li>
+			<li>Evaluation for amblyopia</li>
+			<li>Slit lamp examination of anterior segment health</li>
+			<li>Ophthalmoscopy for evaluation of fundus health</li>
+		</ul>
+	</div>
+	<div>
+		<h3>The Most Afforadble Eyeglasses in {{name}}</h3>
+		<p>Whether you need reading glasses or no-line bifocals, we have a frame you’ll fall in love with. With a low price of $59.95 for two pairs of glasses, you can get both a fun pair of cat eye frames and a more traditional rectangular frame. And if for any reason you’re not satisfied with your purchase, bring them back within 30 days and exchange them for a completely new pair!</p>
+	</div>
+	<div>
+		<h3>The Best Contact Lenses</h3>
+		<p>My Eyelab has a large selection of daily, weekly, and monthly contact lenses to choose from, and we offer the highest quality contact lenses for as low as $15.49 per box with the purchase of an annual supply. Don’t miss out on our promotional Contact Lens Value Pack starting at just $99. It includes two boxes of contacts, lens solution, the eye exam, and other benefits. Visit our store or contact us for more information.</p>
+	</div>
+	<div>
+		<h1 class = "center">Accepted Insurance</h1>
+		<ul class = "leftList">
+			<li>AARP Discount - Eyemed</li>
+			<li>Advantica</li>
+			<li>Always Care Vision</li>
+			<li>Avesis</li>
+			<li>Blue View Vision - Eye Med</li>
+			<li>CEC - Community Eye Care</li>
+			<li>Cigna - VSP</li>
+			<li>Coventry - Eyemed</li>
+			<li>Eyemed</li>
+			<li>Heritage</li>
+			<li>Medica - Spectera</li>
+			<li>NVA (National Vision Administrators)</li>
+			<li>Orange Medical Discount Plan</li>
+			<li>Preferred Care - Spectera</li>
+			<li>Spectera</li>
+			<li>Superior Vision</li>
+			<li>Unicare - EyeMed</li>
+			<li>Vision Ins. Plan of America (VIPA)</li>
+		</ul>
+		<ul class = "rightList">
+			<li>ACS Benefit Service</li>
+			<li>Aetna - Eyemed</li>
+			<li>Anthem Blue Cross Blue Shield (BCBS)</li>
+			<li>Blue Cross Blue Shield (BCBS)</li>
+			<li>Care Credit</li>
+			<li>Cigna - Eyemed</li>
+			<li>Coast To Coast Vision</li>
+			<li>Envolve</li>
+			<li>First Look Vision</li>
+			<li>Humana</li>
+			<li>MES Vision (Medical Eye Services)</li>
+			<li>Optumhealth Vision - Spectera</li>
+			<li>Outlook Vision</li>
+			<li>Solstice Vision</li>
+			<li>Sunshine Health Plan - Opticare</li>
+			<li>UCH Vision</li>
+			<li>United Healthcare - Spectera</li>
+			<li>VSP (Vision Service Plan)</li>
+		</ul>
 	</div>
 </ion-content>
+
+
+
