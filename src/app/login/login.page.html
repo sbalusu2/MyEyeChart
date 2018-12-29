@@ -10,8 +10,8 @@
 			<label>Password</label>
 			<input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
 		</div>
-			<ion-button (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">SIGN IN</ion-button>
-			<ion-button [routerLink]="['/register']">Register</ion-button>
+			<ion-button (click)="login(user)" [disabled]="formCtrl.form.invalid">SIGN IN</ion-button>
+			<ion-button (click) = "register()">Register</ion-button>
 			<ion-button (click)="signInWithGoogle()">Login with Google</ion-button>
 		</form>
 	</div>

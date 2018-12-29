@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import {User} from '../models/user';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +10,16 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  
 
-	user = {
-		email: '',
-		password: ''
-			};
+user = {} as User;
 
-  constructor(private authService: AuthService, private router: Router) { }
+
+  constructor(private fireAuth: AngularFireAuth,  private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
+
 
       signInWithGoogle() {
       this.authService.signInWithGoogle()
@@ -35,5 +37,24 @@ export class LoginPage implements OnInit {
         })
         .catch((err) => console.log('error: ' + err));
     }
+
+     async login(user: User){
+  try{ 
+  const info = await this.fireAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+
+  if(info){
+        await this.router.navigate(['home']);
+
+  }
+  }
+  catch(e){
+  console.error(e);
+  }
+  }
+
+    register(){
+      this.router.navigate(['register']);
+    }
+
 
 }
