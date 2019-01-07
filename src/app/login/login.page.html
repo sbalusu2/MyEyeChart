@@ -3,12 +3,12 @@
 		<form name = "userform" method = "post" #formCtrl = "ngForm">
 		<img src="../assets/img/myeyelab.jpg">
 		<div>
-			<label>Email Address</label>
-			<input type="email" [(ngModel)]="user.email" name="email" placeholder="username or email" required>
+			<label>Username   </label>
+			<input type="email" [(ngModel)]="user.email" name="email" placeholder="email address" required>
 		</div>
 		<div>
-			<label>Password</label>
-			<input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
+			<label>Password    </label>
+			<input type="password" [(ngModel)]="user.password" name="email" placeholder="password " required>
 		</div>
 			<ion-button (click)="login(user)" [disabled]="formCtrl.form.invalid">SIGN IN</ion-button>
 			<ion-button (click) = "register()">Register</ion-button>

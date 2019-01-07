@@ -5,6 +5,7 @@ import { LocationServiceService } from '../location-service.service';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AppointmentsPage implements OnInit {
   tester: Observable<any>;
   testingString: string;
 
-  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService, private db: AngularFireDatabase
+  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService, private db: AngularFireDatabase, public authService: AuthService
 ) { 
 
     locationService.getRandomLocation().subscribe(result => {

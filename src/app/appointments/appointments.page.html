@@ -7,7 +7,7 @@
      My Appointments
     </ion-title>
     <ion-buttons slot = "end">
-      <ion-button>
+      <ion-button (click)="authService.logout()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>     
@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content padding>
-	<h1>Hi there, this is the Appointments Page! {{pie.name}}</h1>
+	<h1>Hi there, this is the Appointments Page!</h1>
 	<ion-searchbar animated = "true"  show-cancel-button debounce="500"
                  (ionInput) = "getItems($event)"
                  [(ngModel)] = "queryText">
@@ -24,7 +24,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items | async" [routerLink]="['/locations', item.id]" routerLinkActive="active">
       {{ item.name }}
-<!--     <a [routerLink]="['/location-detail', location.id]"></a> -->    
+ <!--     <a [routerLink]="['/location-detail', location.id]"></a> -->    
 <!--       <a [routerLink]="['/locations', location.id]" routerLinkActive="active" style="text-decoration: none;"> {{ location.name }}</a>
  -->      
     </ion-item> 

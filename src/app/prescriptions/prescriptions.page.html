@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot ="start">
-        <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>  
     <ion-title>
       My Prescriptions
     </ion-title>
     <ion-buttons slot = "end">
-      <ion-button>
+      <ion-button (click)="authService.logout()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>     

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import {User} from '../models/user';
@@ -15,10 +16,12 @@ export class LoginPage implements OnInit {
 user = {} as User;
 
 
-  constructor(private fireAuth: AngularFireAuth,  private authService: AuthService, private router: Router) { }
+  constructor(private fireAuth: AngularFireAuth,  private authService: AuthService, private router: Router, private toastCtrl: ToastController) { }
 
   ngOnInit() {
   }
+
+
 
 
       signInWithGoogle() {
@@ -48,13 +51,22 @@ user = {} as User;
   }
   }
   catch(e){
-  console.error(e);
+  console.log(e);
+  const toast = await this.toastCtrl.create({
+    message: 'Invalid email or password.',
+    duration: 3000,
+    position: 'bottom'
+});
+toast.present();
+   
+    }
   }
-  }
+
 
     register(){
       this.router.navigate(['register']);
     }
+
 
 
 }
