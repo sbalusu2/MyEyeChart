@@ -19,6 +19,7 @@ user = {} as User;
   constructor(private fireAuth: AngularFireAuth,  private authService: AuthService, private router: Router, private toastCtrl: ToastController) { }
 
   ngOnInit() {
+      this.authService.ui.start('#firebaseui-auth-container', AuthService.getUiConfig());
   }
 
 
