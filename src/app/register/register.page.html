@@ -1,24 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot ="start">
-    </ion-buttons>  
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Create a new My EyeLab Account
     </ion-title>
-    <ion-buttons slot="start">
-    	<ion-back-button></ion-back-button>
-  	</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<div>
 			<label>Email Address</label>
-			<input type="email" [(ngModel)]="user.email" name="email" placeholder="username or email" required>
-		</div>
-		<div>
-			<label>Password</label>
-			<input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
-		</div>
-			<ion-button (click) = "register(user)">Register</ion-button>
+			<input type="email" [(ngModel)]="user.email" name="email" placeholder="enter email" required>
+	</div>
+  <div *ngIf = "nextButton">
+      <ion-button (click) = "next(user)">Next</ion-button>
+  </div>
+  <div *ngIf="exists">
+      <div>
+        <label>Password</label>
+        <input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
+      </div>
+      <ion-button (click) = "register(user)">Register</ion-button>
+  </div>
+
+    <div *ngIf="DNE">
+      <div>
+        <label>First Name</label>
+        <input [(ngModel)]="user.firstName" type = "text" placeholder="first" required>
+        <label>Last Name</label>
+        <input [(ngModel)]="user.lastName" type = "text" placeholder="last" required>
+        <label>Phone Number</label>
+        <input [(ngModel)]="user.phone" type = "number" placeholder="123-456-7890" required>
+        <label>Date of Birth</label>
+        <input [(ngModel)]="user.DOB" type = "date" placeholder="01/01/1990" required>
+
+        <label>Password</label>
+        <input type="password" [(ngModel)]="user.password" name="email" placeholder="password" required>
+      </div>
+      <ion-button (click) = "register(user)">Register</ion-button>
+  </div>
+
 </ion-content>
