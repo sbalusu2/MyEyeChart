@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -22,8 +23,15 @@ export class AppointmentsPage implements OnInit {
   items: Observable<any>;
   tester: Observable<any>;
   testingString: string;
+  storenumber: number;
+  patientappointmentid: number;
+  appointmentdate: string;
+  appointmentstartdatetime: string;
+  appointmentenddatetime: string;
+  email: string;
 
-  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService, private db: AngularFireDatabase, public authService: AuthService
+
+  constructor(private router: Router, private navCtrl: NavController, private locationService: LocationServiceService, private db: AngularFireDatabase, public authService: AuthService, private route: ActivatedRoute
 ) { 
 
     locationService.getRandomLocation().subscribe(result => {
@@ -33,6 +41,27 @@ export class AppointmentsPage implements OnInit {
   }
 
   ngOnInit(){
+    this.email = this.route.snapshot.paramMap.get('email');
+    console.log("YO ID IS: " + this.email);
+    this.items = this.db.object('PatientInfo').valueChanges();
+    console.log("OIRTPOEIRTPOIER"  + this.items);
+    console.log(JSON.stringify(this.items));
+    console.log("Length "+ Object.keys(this.items).length); 
+    this.items.subscribe(data=>{
+         console.log("overall data contains" + data);
+         for (let pet of data) {
+          console.log(pet.email);
+          if(pet.email === this.email){
+            console.log("cat" + pet.name); // "Cat", "Dog", "Hamster"
+            this.patientappointmentid = pet.patientappointmentid;
+            this.appointmentdate = pet.appointmentdate;
+            this.appointmentstartdatetime =  pet.appointmentstartdatetime;
+            this.appointmentenddatetime =  pet.appointmentenddatetime;
+            this.storenumber = pet.storenumber;
+            }
+          }
+        });
+
     console.log('ionViewDidLoad ListLocationPage');
     this.locationService.getLocations().subscribe(results => {
     this.locations = results;

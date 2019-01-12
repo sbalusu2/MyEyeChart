@@ -17,11 +17,11 @@
 <ion-content padding>
 	<ion-card>
       <ion-card-header>
-       		<ion-card-title>FirstName LastName</ion-card-title>
+       		<ion-card-title>{{alsoshow}}</ion-card-title>
       </ion-card-header>
       <ion-list>
         <ion-card-content>
-          Email: exampleEmail@gmail.com
+          Email: {{show}}
         </ion-card-content>
         <ion-card-content>
           Phone Number: (123-456-7890)
@@ -31,8 +31,8 @@
         </ion-card-content>
        </ion-list>
   </ion-card>
-  <ion-button [routerLink]="['/orders']"  shape="round" color="primary" fill="outline">My Orders</ion-button>
-  <ion-button [routerLink]="['/appointments']" shape="round" color="primary" fill="outline">My Appointments</ion-button>
+  <ion-button [routerLink]="['/orders', show]"  shape="round" color="primary" fill="outline">My Orders</ion-button>
+  <ion-button [routerLink]="['/appointments', show]" shape="round" color="primary" fill="outline">My Appointments</ion-button>
   <ion-button [routerLink]="['/prescriptions']"  shape="round" color="primary" fill="outline">My Prescriptions</ion-button>
 
 </ion-content>

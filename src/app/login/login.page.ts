@@ -46,7 +46,8 @@ user = {} as User;
   const info = await this.fireAuth.auth.signInWithEmailAndPassword(user.email, user.password);
 
   if(info){
-        await this.router.navigate(['home']);
+        console.log("EMAIL BEFORE SENDING IS: " + user.email);
+        this.router.navigate(['home', {email: user.email}]);
 
   }
   }

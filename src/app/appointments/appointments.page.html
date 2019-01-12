@@ -16,6 +16,12 @@
 
 <ion-content padding>
 	<h1>Hi there, this is the Appointments Page!</h1>
+  <h3>This is the store your appointment is at: {{storenumber}}</h3>
+  <h3>This is your appointment date: {{appointmentdate}}</h3>
+  <h3>This is your appointment start time: {{appointmentstartdatetime}}</h3>
+  <h3>This is your appointment end time: {{appointmentenddatetime}}</h3>
+  <h3>This is your appointment id: {{patientappointmentid}}</h3>
+  
 	<ion-searchbar animated = "true"  show-cancel-button debounce="500"
                  (ionInput) = "getItems($event)"
                  [(ngModel)] = "queryText">

@@ -23,11 +23,11 @@ example: Observable<any>;
     private menu: MenuController,
     private db: AngularFireDatabase
   ){
-    this.items = db.object('locations').valueChanges();
+    this.items = db.object('PatientInfo').valueChanges();
     this.items.subscribe(data=>{
          console.log("overall data contains" + data);
          for (let pet of data) {
-            console.log("cat" + pet.name); // "Cat", "Dog", "Hamster"
+            console.log("cat" + pet.Name); // "Cat", "Dog", "Hamster"
           }
         });
     console.log("TYPE OF THE OBJECTS ARE: " + this.items); 
